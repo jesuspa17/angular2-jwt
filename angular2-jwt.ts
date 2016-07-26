@@ -67,7 +67,11 @@ export class AuthConfig {
 export class AuthHttp {
 
   private _config: IAuthConfig;
+  private _offset: number = 0;
   public tokenStream: Observable<string>;
+
+  public get offset(): number { return this._offset; }
+  public set offset(offset: number) { this._offset = offset; }
 
   constructor(options: AuthConfig, private http: Http, private _defOpts?: RequestOptions) {
     this._config = options.getConfig();
@@ -98,7 +102,7 @@ export class AuthHttp {
 
     // from this point url is always an instance of Request;
     let req: Request = <Request>url;
-    if (!tokenNotExpired(null, this._config.tokenGetter())) {
+    if (!tokenNotExpired(null, this._config.tokenGetter(), this._offset)) {
       if (!this._config.noJwtError) {
         return new Observable<Response>((obs: any) => {
           obs.error(new Error('No JWT present or has expired'));
@@ -221,13 +225,13 @@ export class JwtHelper {
  * For use with the @CanActivate router decorator and NgIf
  */
 
-export function tokenNotExpired(tokenName = 'id_token', jwt?:string):boolean {
+export function tokenNotExpired(tokenName = 'id_token', jwt?:string, offset?: number):boolean {
 
   const token:string = jwt || localStorage.getItem(tokenName);
 
   const jwtHelper = new JwtHelper();
 
-  return token && !jwtHelper.isTokenExpired(token, null);
+  return token && !jwtHelper.isTokenExpired(token, offset);
 }
 
 export const AUTH_PROVIDERS: any = [
