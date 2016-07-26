@@ -70,7 +70,11 @@ export class AuthHttpError extends Error {
 export class AuthHttp {
 
   private config: IAuthConfig;
+  private _offset: number = 0;
   public tokenStream: Observable<string>;
+
+  public get offset(): number { return this._offset; }
+  public set offset(offset: number) { this._offset = offset; }
 
   constructor(options: AuthConfig, private http: Http, private defOpts?: RequestOptions) {
     this.config = options.getConfig();
@@ -134,9 +138,13 @@ export class AuthHttp {
 
     // from this point url is always an instance of Request;
     let req: Request = url as Request;
-    let token: string | Promise<string> = this.config.tokenGetter();
-    if (token instanceof Promise) {
-      return Observable.fromPromise(token).mergeMap((jwtToken: string) => this.requestWithToken(req, jwtToken));
+    if (!tokenNotExpired(null, this._config.tokenGetter(), this._offset)) {
+      let token: string | Promise<string> = this.config.tokenGetter();
+      if (token instanceof Promise) {
+        return Observable.fromPromise(token).mergeMap((jwtToken: string) => this.requestWithToken(req, jwtToken));
+      } else {
+        return this.requestWithToken(req, token);
+      }
     } else {
       return this.requestWithToken(req, token);
     }
@@ -245,7 +253,7 @@ export function tokenNotExpired(tokenName = 'id_token', jwt?: string): boolean {
 
   const jwtHelper = new JwtHelper();
 
-  return token != null && !jwtHelper.isTokenExpired(token);
+  return token != null && !jwtHelper.isTokenExpired(token, offset);
 }
 
 export const AUTH_PROVIDERS: Provider[] = [
