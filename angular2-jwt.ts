@@ -104,7 +104,7 @@ export class AuthHttp {
   }
 
   private requestWithToken(req: Request, token: string): Observable<Response> {
-    if (!tokenNotExpired(undefined, token)) {
+    if (!tokenNotExpired(undefined, token, this._offset)) {
       if (!this.config.noJwtError) {
         return new Observable<Response>((obs: any) => {
           obs.error(new AuthHttpError('No JWT present or has expired'));
@@ -138,13 +138,9 @@ export class AuthHttp {
 
     // from this point url is always an instance of Request;
     let req: Request = url as Request;
-    if (!tokenNotExpired(null, this._config.tokenGetter(), this._offset)) {
-      let token: string | Promise<string> = this.config.tokenGetter();
-      if (token instanceof Promise) {
-        return Observable.fromPromise(token).mergeMap((jwtToken: string) => this.requestWithToken(req, jwtToken));
-      } else {
-        return this.requestWithToken(req, token);
-      }
+    let token: string | Promise<string> = this.config.tokenGetter();
+    if (token instanceof Promise) {
+      return Observable.fromPromise(token).mergeMap((jwtToken: string) => this.requestWithToken(req, jwtToken));
     } else {
       return this.requestWithToken(req, token);
     }
@@ -247,7 +243,7 @@ export class JwtHelper {
  * For use with the @CanActivate router decorator and NgIf
  */
 
-export function tokenNotExpired(tokenName = 'id_token', jwt?: string): boolean {
+export function tokenNotExpired(tokenName = 'id_token', jwt?: string, offset?: number): boolean {
 
   const token: string = jwt || localStorage.getItem(tokenName);
 
