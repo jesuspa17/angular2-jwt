@@ -13,19 +13,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var js_base64_1 = require('js-base64');
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var Observable_1 = require('rxjs/Observable');
-require('rxjs/add/observable/fromPromise');
-require('rxjs/add/operator/mergeMap');
+var js_base64_1 = require("js-base64");
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/observable/fromPromise");
+require("rxjs/add/operator/mergeMap");
 /**
  * Sets up the authentication configuration.
  */
 var AuthConfig = (function () {
     function AuthConfig(config) {
-        var _this = this;
         if (config === void 0) { config = {}; }
+        var _this = this;
         this.globalHeaders = config.globalHeaders || [];
         this.headerName = config.headerName || 'Authorization';
         if (config.headerPrefix) {
@@ -59,7 +59,7 @@ exports.AuthConfig = AuthConfig;
 var AuthHttpError = (function (_super) {
     __extends(AuthHttpError, _super);
     function AuthHttpError() {
-        _super.apply(this, arguments);
+        return _super.apply(this, arguments) || this;
     }
     return AuthHttpError;
 }(Error));
@@ -161,12 +161,12 @@ var AuthHttp = (function () {
     AuthHttp.prototype.options = function (url, options) {
         return this.requestHelper({ body: '', method: http_1.RequestMethod.Options, url: url }, options);
     };
-    AuthHttp = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [AuthConfig, http_1.Http, http_1.RequestOptions])
-    ], AuthHttp);
     return AuthHttp;
 }());
+AuthHttp = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [AuthConfig, http_1.Http, http_1.RequestOptions])
+], AuthHttp);
 exports.AuthHttp = AuthHttp;
 /**
  * Helper class to decode and find JWT expiration.

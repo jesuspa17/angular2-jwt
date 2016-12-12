@@ -1,3 +1,5 @@
+const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+
 module.exports = function (config) {
     'use strict';
 
@@ -59,6 +61,9 @@ module.exports = function (config) {
                     {test: /\.ts$/,loader: 'awesome-typescript-loader'}
                 ]
             },
+            plugins: [
+                new CheckerPlugin()
+            ],
             stats: {
                 colors: true,
                 reasons: true
