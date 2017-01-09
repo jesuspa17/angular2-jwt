@@ -1,6 +1,6 @@
 {
   "name": "angular2-jwt",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Helper library for handling JWTs in Angular 2",
   "repository": {
     "type": "git",
@@ -26,11 +26,11 @@
   "typings": "./angular2-jwt.d.ts",
   "homepage": "https://github.com/auth0/angular2-jwt#readme",
   "devDependencies": {
-    "@angular/common": "2.4.1",
-    "@angular/core": "2.4.1",
-    "@angular/http": "2.4.1",
-    "@angular/platform-browser": "2.4.1",
-    "@types/jasmine": "2.5.38",
+    "@angular/common": "2.4.2",
+    "@angular/core": "2.4.2",
+    "@angular/http": "2.4.2",
+    "@angular/platform-browser": "2.4.2",
+    "@types/jasmine": "2.5.40",
     "@types/js-base64": "2.1.5",
     "awesome-typescript-loader": "3.0.0-beta.17",
     "core-js": "2.4.1",
@@ -44,15 +44,15 @@
     "karma-webpack": "1.8.1",
     "phantomjs-prebuilt": "2.1.14",
     "reflect-metadata": "0.1.9",
-    "rxjs": "5.0.2",
+    "rxjs": "5.0.3",
     "typescript": "2.1.4",
     "webpack": "1.14.0",
     "zone.js": "0.7.4"
   },
   "peerDependencies": {
-    "@angular/core": "2.4.1",
-    "@angular/http": "2.4.1",
-    "rxjs": "5.0.2"
+    "@angular/core": "2.4.2",
+    "@angular/http": "2.4.2",
+    "rxjs": "5.0.3"
   },
   "dependencies": {
     "js-base64": "2.1.9"
