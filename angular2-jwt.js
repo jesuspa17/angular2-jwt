@@ -59,7 +59,7 @@ exports.AuthConfig = AuthConfig;
 var AuthHttpError = (function (_super) {
     __extends(AuthHttpError, _super);
     function AuthHttpError() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return AuthHttpError;
 }(Error));
