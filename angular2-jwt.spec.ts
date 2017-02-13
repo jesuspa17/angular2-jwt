@@ -153,7 +153,7 @@ describe("AuthHttp", () => {
                 tokenGetter: () => validToken
             }), null);
 
-            spyOn(authHttp, "requestWithToken").and.stub();
+            //spyOn(authHttp, "requestWithToken").and.stub();
 
             authHttp.request(null);
 
@@ -165,7 +165,7 @@ describe("AuthHttp", () => {
                 tokenGetter: () => Promise.resolve(validToken)
             }), null);
 
-            spyOn(authHttp, "requestWithToken").and.returnValue(Observable.of(""));
+            //spyOn(authHttp, "requestWithToken").and.returnValue(Observable.of(""));
 
             authHttp.request(null).subscribe(() => {
                 expect(authHttp["requestWithToken"]).toHaveBeenCalledWith(null, validToken);

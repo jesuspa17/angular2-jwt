@@ -1,7 +1,6 @@
 "use strict";
 require("core-js");
 var angular2_jwt_1 = require("./angular2-jwt");
-var rxjs_1 = require("rxjs");
 var js_base64_1 = require("js-base64");
 var expiredToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjB9.m2OKoK5-Fnbbg4inMrsAQKsehq2wpQYim8695uLdogk";
 var validToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjk5OTk5OTk5OTl9.K_lUwtGbvjCHP8Ff-gW9GykydkkXzHKRPbACxItvrFU";
@@ -139,7 +138,7 @@ describe("AuthHttp", function () {
             var authHttp = new angular2_jwt_1.AuthHttp(new angular2_jwt_1.AuthConfig({
                 tokenGetter: function () { return validToken; }
             }), null);
-            spyOn(authHttp, "requestWithToken").and.stub();
+            //spyOn(authHttp, "requestWithToken").and.stub();
             authHttp.request(null);
             expect(authHttp["requestWithToken"]).toHaveBeenCalledWith(null, validToken);
         });
@@ -147,7 +146,7 @@ describe("AuthHttp", function () {
             var authHttp = new angular2_jwt_1.AuthHttp(new angular2_jwt_1.AuthConfig({
                 tokenGetter: function () { return Promise.resolve(validToken); }
             }), null);
-            spyOn(authHttp, "requestWithToken").and.returnValue(rxjs_1.Observable.of(""));
+            //spyOn(authHttp, "requestWithToken").and.returnValue(Observable.of(""));
             authHttp.request(null).subscribe(function () {
                 expect(authHttp["requestWithToken"]).toHaveBeenCalledWith(null, validToken);
                 done();
