@@ -1,6 +1,6 @@
 {
   "name": "angular2-jwt",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Helper library for handling JWTs in Angular 2",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "core-js": "2.4.1",
     "es6-shim": "0.35.3",
     "jasmine-core": "2.5.2",
-    "karma": "1.4.1",
+    "karma": "1.5.0",
     "karma-chrome-launcher": "2.0.0",
     "karma-jasmine": "1.1.0",
     "karma-phantomjs-launcher": "1.0.2",
@@ -44,7 +44,7 @@
     "karma-webpack": "2.0.2",
     "phantomjs-prebuilt": "2.1.14",
     "reflect-metadata": "0.1.9",
-    "rxjs": "5.1.1",
+    "rxjs": "5.2.0",
     "typescript": "2.1.6",
     "webpack": "1.14.0",
     "zone.js": "0.7.7"
@@ -52,7 +52,7 @@
   "peerDependencies": {
     "@angular/core": "2.4.8",
     "@angular/http": "2.4.8",
-    "rxjs": "5.1.1"
+    "rxjs": "5.2.0"
   },
   "dependencies": {
     "js-base64": "2.1.9"
