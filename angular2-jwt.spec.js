@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 require("core-js");
 var angular2_jwt_1 = require("./angular2-jwt");
 var js_base64_1 = require("js-base64");
