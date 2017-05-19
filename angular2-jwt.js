@@ -45,7 +45,7 @@ var AuthConfig = (function () {
         }
         this.noJwtError = config.noJwtError || false;
         this.noTokenScheme = config.noTokenScheme || false;
-        this.tokenGetter = config.tokenGetter || (function () { return localStorage.getItem(_this.tokenName); });
+        this.tokenGetter = config.tokenGetter || (function () { return sessionStorage.getItem(_this.tokenName); });
         this.tokenName = config.tokenName || 'id_token';
     }
     AuthConfig.prototype.getConfig = function () {
@@ -240,7 +240,7 @@ exports.JwtHelper = JwtHelper;
  */
 function tokenNotExpired(tokenName, jwt, offset) {
     if (tokenName === void 0) { tokenName = 'id_token'; }
-    var token = jwt || localStorage.getItem(tokenName);
+    var token = jwt || sessionStorage.getItem(tokenName);
     var jwtHelper = new JwtHelper();
     return token != null && !jwtHelper.isTokenExpired(token, offset);
 }

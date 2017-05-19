@@ -41,7 +41,7 @@ export class AuthConfig {
     }
     this.noJwtError = config.noJwtError || false;
     this.noTokenScheme = config.noTokenScheme || false;
-    this.tokenGetter = config.tokenGetter || (() => localStorage.getItem(this.tokenName) as string);
+    this.tokenGetter = config.tokenGetter || (() => sessionStorage.getItem(this.tokenName) as string);
     this.tokenName = config.tokenName || 'id_token';
   }
 
@@ -245,7 +245,7 @@ export class JwtHelper {
 
 export function tokenNotExpired(tokenName = 'id_token', jwt?: string, offset?: number): boolean {
 
-  const token: string = jwt || localStorage.getItem(tokenName);
+  const token: string = jwt || sessionStorage.getItem(tokenName);
 
   const jwtHelper = new JwtHelper();
 
